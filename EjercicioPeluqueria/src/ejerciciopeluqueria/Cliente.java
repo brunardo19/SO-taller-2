@@ -5,47 +5,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Cliente extends Thread {
-    Semaphore S;
+
+    Semaphore sillas;
+    Semaphore pelu;
     String nombre;
-    int Sillas_espera;
-    boolean disponible;
+    String B = "\u001B[34m";
 
-    public Cliente(Semaphore S1,String nombre,int SE, boolean disp) {
-        this.S = S1;
+    public Cliente(Semaphore sillas, Semaphore pelu, String nombre, int SE, boolean disp) {
+        this.sillas = sillas;
+        this.pelu = pelu;
         this.nombre = nombre;
-        this.Sillas_espera = SE;
-        this.disponible = disp;
     }
 
+    public void run() {
+        try {
+            System.out.println(B + nombre + " - Ejecutando");
+            System.out.println(nombre + " - Esperando Permiso");
+            sillas.acquire(); //Espera a saber si hay asientos dispnibles en la sala de espera
+            System.out.println("Cantidad de Sillas disponibles: " + sillas.availablePermits());
+            pelu.acquire();
+            sillas.release(); //Libera silla
+            System.out.println(B + nombre + "- Cortandose el pelo");
+            System.out.println("Cantidad de Peluqueros disponibles: " + pelu.availablePermits());
+            pelu.release();
+            System.out.println(B + nombre + "- Termino de cortarse el pelo");
+            System.out.println(B + nombre + "- Sale de la peluqueria");
 
-    public void run(){
-        while (true){
-            try {
-                System.out.println(nombre + " - Ejecutando");
-                System.out.println(nombre + " - Esperando Permiso");
-                S.acquire(); //Espera a saber si hay asientos dispnibles en la sala de espera
-                if (Sillas_espera == 10){
-                    System.out.println(nombre + " - Aun no puede pasar a la peluqueria");
-                    Sillas_espera = Sillas_espera - 1;
-                }else{
-                    System.out.println(nombre + " - Puede pasar a la peluqueria");
-                    Sillas_espera = Sillas_espera + 1;
-                }
-                if (disponible == true){
-                    System.out.println(nombre + " - Se corta el cabello");
-                    disponible = false;
-                    System.out.println(nombre + " - Sale de la peluqueria");
-                }else{
-                    System.out.println(nombre + " - Debe esperar hasta que un peluquero este disponible ");
-                    System.out.println(nombre + " - Pasa a cortarse el cabello");
-                    System.out.println(nombre + " - Sale de la peluqueria");
-                }        
-                S.release(); //Sale de la peluqueria
-              
-            } catch (InterruptedException ex) {
-                Logger.getLogger(nombre + Peluquero1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+        } catch (InterruptedException ex) {
+            Logger.getLogger(nombre + Peluquero1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
-}}
+}

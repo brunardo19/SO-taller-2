@@ -6,11 +6,13 @@ import java.util.logging.Logger;
 
 public class Peluquero3 extends Thread {
     Semaphore S;
+    Semaphore sillas;
     String nombre;
     
 
-    public Peluquero3(Semaphore S1,String nombre) {
-        this.S = S1;
+    public Peluquero3(Semaphore S, Semaphore sillas, String nombre) {
+        this.S = S;
+        this.sillas = sillas;
         this.nombre = nombre;
     }
     
@@ -24,6 +26,7 @@ public class Peluquero3 extends Thread {
                 System.out.println(nombre + " - Cortando cabello");
                 Thread.sleep(1000);
                 S.release(); //Se termino de cortar el pelo el cliente
+                sillas.release();//El cliente se va
               
             } catch (InterruptedException ex) {
                 Logger.getLogger(nombre + Peluquero3.class.getName()).log(Level.SEVERE, null, ex);

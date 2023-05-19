@@ -5,17 +5,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Peluquero2 extends Thread {
-    Semaphore S;
-    String nombre;
-    
 
-    public Peluquero2(Semaphore S1,String nombre) {
-        this.S = S1;
+    Semaphore S;
+    Semaphore sillas;
+    String nombre;
+
+    public Peluquero2(Semaphore S, Semaphore sillas, String nombre) {
+        this.S = S;
+        this.sillas = sillas;
         this.nombre = nombre;
     }
-    
-    public void run(){
-        while (true){
+
+    public void run() {
+        while (true) {
             try {
                 System.out.println(nombre + " - Ejecutando");
                 System.out.println(nombre + " - Esperando Permiso");
@@ -24,11 +26,13 @@ public class Peluquero2 extends Thread {
                 System.out.println(nombre + " - Cortando cabello");
                 Thread.sleep(1000);
                 S.release(); //Se termino de cortar el pelo el cliente
-              
+                sillas.release();//El cliente se va
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(nombre + Peluquero2.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
+        }
+
     }
-    
-    }}
+}

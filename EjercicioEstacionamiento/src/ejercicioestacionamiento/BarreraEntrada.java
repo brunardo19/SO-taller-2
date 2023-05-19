@@ -22,7 +22,7 @@ public class BarreraEntrada extends Thread {
             try {
                 System.out.println("- Esperando en entrada" + barId);
                 System.out.println("Capacidad: " + Estacionamiento.availablePermits());
-                Estacionamiento.acquire(); //Se espera que se liberen plazas para el ingreso de autos
+                Estacionamiento.acquire(); //Llega auto
                 int espera = (int) (Math.random() * 10000);
                 System.out.println(" - Ingresa Auto");
                 System.out.println("Tiempo de espera: " + espera/1000 + " segundos");
