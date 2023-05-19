@@ -11,6 +11,7 @@ public class BarreraSalida extends Thread {
 
     int barId;
     int i = 1;
+    public static final String Y = "\033[1;33m"; // YELLOW
 
     public BarreraSalida(Semaphore Estacionamiento, Semaphore sinc, int entrada) {
         this.Estacionamiento = Estacionamiento;
@@ -24,7 +25,8 @@ public class BarreraSalida extends Thread {
             try {
                 sinc.acquire();
                 System.out.println("- Esperando en Salida" + barId);
-                System.out.println(" - Salida Auto");
+                sleep(500);
+                System.out.println(Y + " - Salida Auto");
                 Estacionamiento.release(); //Se cierran las barreras
             } catch (InterruptedException ex) {
                 Logger.getLogger(BarreraSalida.class.getName()).log(Level.SEVERE, null, ex);
