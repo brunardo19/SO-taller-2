@@ -12,10 +12,12 @@ public class Estacionamiento {
         int numBarreraSalida = 2;
         int i = 0;
 
+        //Array de barreras
         BarreraEntrada[] barrerasEntrada = new BarreraEntrada[numBarreraEntrada];
         BarreraSalida[] barrerasSalida = new BarreraSalida[numBarreraSalida];
 
-        while (i < numBarreraEntrada) {
+        //Crear las barreras
+        while (i < numBarreraEntrada) { 
             barrerasEntrada[i] = new BarreraEntrada(Estacionamiento, sinc, i);
             barrerasEntrada[i].start();
             i++;

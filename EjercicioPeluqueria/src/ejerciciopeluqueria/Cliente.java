@@ -4,13 +4,13 @@ import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Clientes extends Thread {
+public class Cliente extends Thread {
     Semaphore S;
     String nombre;
     int Sillas_espera;
     boolean disponible;
 
-    public Clientes(Semaphore S1,String nombre,int SE, boolean disp) {
+    public Cliente(Semaphore S1,String nombre,int SE, boolean disp) {
         this.S = S1;
         this.nombre = nombre;
         this.Sillas_espera = SE;
