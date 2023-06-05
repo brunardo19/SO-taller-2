@@ -19,7 +19,7 @@ public class Estacionamiento {
 
         //Crear Semaforos de sincronizacion
         for (int j = 0; j < numBarreraEntrada + 1; j++) {
-            entradaSinc[j] = new Semaphore(0); // Inicia con 0 permits
+            entradaSinc[j] = new Semaphore(0); // Inicia con 0 permitss
         }
 
         //Crear las barreras
