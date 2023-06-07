@@ -25,7 +25,7 @@ public class Caja extends Thread {
     }
 
     public void cobrar(float monto, Producto tar) {
-        if (tar.stock >= 0) {
+        if (tar.stock > 0) {
             tar.stock -= 1;
             System.out.println("Caja" + cajaID + ": Se cobro " + monto);
             System.out.println("Por el producto " + tar.descripcion);
@@ -38,7 +38,7 @@ public class Caja extends Thread {
     public void run() {
         while (true) {
             try {
-                sleep((long) (1000 + Math.random() * 10000));
+                sleep((long) (Math.random() * 1000));
                 s.acquire();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
