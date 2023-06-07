@@ -38,7 +38,7 @@ public class Caja extends Thread {
     public void run() {
         while (true) {
             try {
-                sleep((long) (Math.random() * 1000));
+                sleep((long) (Math.random() * 5000));
                 s.acquire();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);

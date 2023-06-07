@@ -17,11 +17,11 @@ public class SupermercadoSemaforo {
      */
     public static void main(String[] args) {
         Semaphore s = new Semaphore(1);
-        Producto[] prods = {new Producto(0, 50, true, "Producto A"),
-            new Producto(0, 30, false, "Producto B"),
-            new Producto(7, 20, true, "Producto C"),
-            new Producto(3, 15, false, "Producto D"),
-            new Producto(12, 60, true, "Producto E")};
+        Producto[] prods = {new Producto(50, 500, true, "Producto A"),
+            new Producto(20, 300, false, "Producto B"),
+            new Producto(7, 200, true, "Producto C"),
+            new Producto(3, 150, false, "Producto D"),
+            new Producto(0, 600, true, "Producto E")};
 
         Distribuidor D1 = new Distribuidor(prods, s);
         Caja C1 = new Caja(prods, 1, s);
