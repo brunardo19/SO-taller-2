@@ -23,7 +23,7 @@ public class Atleta extends Thread {
                 System.out.println(nombre + " - Va corriendo : " + distancia + " - en: " + tiempo + " segundos");
                 tiempo += 1;
                 if (distancia >= meta) {
-                    System.out.println(nombre + "Llego a la meta en " + tiempo + " segundos");
+                    System.out.println(nombre + " Llego a la meta en " + tiempo + " segundos");
                 }
             } catch (InterruptedException ex) {
                 Logger.getLogger(Atleta.class.getName()).log(Level.SEVERE, null, ex);
