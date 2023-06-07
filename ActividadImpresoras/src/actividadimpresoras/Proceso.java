@@ -4,34 +4,31 @@ import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Impresoras_B extends Thread {
+public class Proceso extends Thread {
+
     Semaphore S;
     String nombre;
-    int NumB;
-    int cont = 1;
 
-    public Impresoras_B(Semaphore S1,String nombre,int Nb) {
+    public Proceso(Semaphore S1, String nombre) {
         this.S = S1;
-        this.nombre= nombre;
-        this.NumB = Nb;
+        this.nombre = nombre;
     }
-    
-    public void run(){
-        
-        while (cont <= NumB){
+
+    @Override
+    public void run() {
+        while (true) {
             try {
+                sleep((long) (Math.random() * 1000));
                 System.out.println(nombre + " - Ejecutando");
                 System.out.println(nombre + " - Esperando Permiso");
                 S.acquire(); //Espera
                 System.out.println(nombre + " - Imprimiendo");
                 S.release(); //Señal
-                cont = cont + 1;
             } catch (InterruptedException ex) {
-                Logger.getLogger(nombre + Impresoras_B.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(nombre + Proceso.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
+        }
     }
-    }
-    
-    
+
 }

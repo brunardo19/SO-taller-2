@@ -5,14 +5,15 @@ import java.util.concurrent.Semaphore;
 public class Imprenta {
 
     public static void main(String[] args) {
-        Semaphore S1 = new Semaphore(1);
-        Impresoras_A IA = new Impresoras_A(S1,"Impresora A",5);
-        Impresoras_B IB = new Impresoras_B(S1,"Impresora B",4);
+        Semaphore SA = new Semaphore(1);
+        Semaphore SB = new Semaphore(1);
+        Proceso PA = new Proceso(SA,"Proceso A");
+        Proceso PB = new Proceso(SB,"Proceso B");
+        ProcesoAB AB = new ProcesoAB(SA,SB,"Proceso AB");
         
-        
-        IA.start();
-        IB.start();
-     
+        PA.start();
+        PB.start();
+        AB.start();
     }
     
     
